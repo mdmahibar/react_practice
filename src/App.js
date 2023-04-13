@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/Users/UsersList";
+import Add from "./components/Users/Add";
 
 const App = () => {
 
   const [ addUserList, setAddUserList ] = useState([]);
+  const [ showForm, setShowForm ] = useState(false);
 
   const chnageUserHandler = (uName, uAge) => {
     setAddUserList((prev) => {
@@ -12,9 +14,18 @@ const App = () => {
     });
   }
 
+  const addHandler = () => {
+    setShowForm(true);
+  }
+
+  const removeHandler = () => {
+    setShowForm(false);
+  }
+
+
   return (
     <div>
-      <AddUser onAddUser = {chnageUserHandler}/>
+      {showForm ? <AddUser onRemove = {removeHandler} onAddUser = {chnageUserHandler}/> : <Add onAdd = {addHandler} />}
       <UsersList users = {addUserList} />
     </div>
   );

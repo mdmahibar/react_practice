@@ -53,6 +53,10 @@ const AddUser = (props) => {
     setError(null);
   }
 
+  const cancelHandler = () => {
+    props.onRemove();
+  }
+
   return (
     <div>
       {error && <ErrorModal onConfirm = {errorHandler} heading= {error.heading} body={error.body}/>}
@@ -74,6 +78,7 @@ const AddUser = (props) => {
             onChange={userAgeHandler}
           />
           <Button type="submit">Add User</Button>
+          <Button className={styles.left} onClick = {cancelHandler}>Cancel</Button>
         </form>
       </Card>
     </div>
