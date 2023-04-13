@@ -7,7 +7,8 @@ import ErrorModal from "../UI/ErrorModal";
 const AddUser = (props) => {
   const [addUserName, setAddUserName] = useState("");
   const [addUserAge, setAddUserAge] = useState("");
-  const [error, setError] = useState();//Intial undefined
+  const [error, setError] = useState();//Intial undefined -> Falsy values
+  const [isActive, setIsActive] = useState(true);
 
   const addUserHandler = (event) => {
     event.preventDefault();
@@ -34,7 +35,14 @@ const AddUser = (props) => {
   };
 
   const userNameHandler = (event) => {
+    if(event.target.value.trim().length <= 7) {
+      setIsActive(false);
+    }
+    if(event.target.value.trim().length > 8) {
+      setIsActive(true);
+    }
     setAddUserName(event.target.value);
+    
   };
 
   const userAgeHandler = (event) => {
@@ -56,6 +64,7 @@ const AddUser = (props) => {
             type="text"
             value={addUserName}
             onChange={userNameHandler}
+            className={`${!isActive && styles.active}`}
           />
           <label htmlFor="age">Age (Years)</label>
           <input

@@ -20,6 +20,11 @@
   margin-bottom: 0.5rem;
 }
 
+.input input.active {
+  border-color: red;
+  background-color: rgb(221, 142, 142);
+}
+
 .input input:focus {
   outline: none;
   border-color: #4f005f;
